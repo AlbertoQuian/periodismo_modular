@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Revolución del Vinilo | Beat Magazine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a0a23;
+            --secondary-color: #ff6b6b;
+            --accent-color: #4ecdc4;
+            --light-color: #f8f9fa;
+            --dark-color: #1a1a2e;
+            --text-color: #2d3436;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        body.dark-mode {
+            --primary-color: #4ecdc4;
+            --secondary-color: #ff6b6b;
+            --accent-color: #4ecdc4;
+            --light-color: #1a1a2e;
+            --dark-color: #0a0a23;
+            --text-color: #f8f9fa;
+            background-color: #121212;
+        }
+        
+        body.dark-mode .content-module,
+        body.dark-mode .modular-panel,
+        body.dark-mode .modular-header {
+            background-color: #1a1a2e;
+            color: #f8f9fa;
+            border-color: #333;
+        }
+        
+        body.dark-mode .module-header {
+            border-bottom-color: #333;
+        }
+        
+        body.dark-mode .highlight {
+            color: var(--accent-color);
+        }
+        
+        /* Cabecera modular */
+        .modular-header {
+            background-color: white;
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .modular-header {
+            background-color: #1a1a2e;
+            border-bottom-color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .modular-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modular-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .modular-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .modular-controls {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .modular-btn {
+            background: none;
+            border: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .modular-btn:hover {
+            background-color: rgba(10,10,35,0.05);
+        }
+        
+        .modular-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        body.dark-mode .modular-btn {
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .modular-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        body.dark-mode .modular-btn.active {
+            background-color: var(--accent-color);
+            color: #1a1a2e;
+        }
+        
+        /* Hero section */
+        .modular-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Módulos de contenido */
+        .modular-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        .modular-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .modular-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        /* Sidebar controls */
+        .modular-panel {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .modular-panel {
+            background-color: #1a1a2e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .panel-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        body.dark-mode .panel-title {
+            color: var(--accent-color);
+        }
+        
+        .module-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .module-tag {
+            background-color: var(--light-color);
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .module-tag:hover {
+            border-color: var(--accent-color);
+        }
+        
+        .module-tag.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        body.dark-mode .module-tag {
+            background-color: #2d3436;
+            border-color: #444;
+        }
+        
+        .module-tag i {
+            font-size: 0.7rem;
+        }
+        
+        .sort-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .sort-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sort-option:hover {
+            background-color: rgba(10,10,35,0.05);
+        }
+        
+        .sort-option.active {
+            background-color: rgba(78,205,196,0.1);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        body.dark-mode .sort-option:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sort-option .indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sort-option.active .indicator {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+        }
+        
+        .sort-option.active .indicator::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        /* Módulos de contenido */
+        .content-module {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        body.dark-mode .content-module {
+            background-color: #1a1a2e;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .content-module.hidden {
+            display: none;
+        }
+        
+        .content-module.fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .module-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        body.dark-mode .module-header {
+            border-bottom-color: #333;
+        }
+        
+        .module-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .module-title {
+            color: var(--accent-color);
+        }
+        
+        .module-type {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-color);
+            background-color: rgba(78,205,196,0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        .module-content {
+            padding: 1.5rem;
+        }
+        
+        /* Tipos específicos de módulos */
+        .text-module .module-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        body.dark-mode .text-module .module-content {
+            color: #f8f9fa;
+        }
+        
+        .text-module .module-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .carousel-module {
+            padding: 0;
+        }
+        
+        .carousel-module .module-content {
+            padding: 0;
+        }
+        
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            padding: 2rem;
+            text-align: left;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .carousel-caption h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .carousel-caption p {
+            font-size: 1rem;
+            max-width: 600px;
+        }
+        
+        .video-grid-module .module-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .video-caption {
+            color: var(--accent-color);
+        }
+        
+        .audio-module .module-content {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .audio-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-module canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+        
+        .chart-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .chart-option {
+            background-color: var(--light-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chart-option.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        body.dark-mode .chart-option {
+            background-color: #2d3436;
+            color: #f8f9fa;
+        }
+        
+        /* Footer */
+        .modular-footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .footer-link {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .modular-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modular-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .video-grid-module .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modular-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .modular-controls {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Reorder controls */
+        .reorder-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .reorder-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background-color: rgba(78,205,196,0.1);
+            color: var(--accent-color);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .reorder-btn:hover {
+            background-color: rgba(78,205,196,0.2);
+        }
+        
+        body.dark-mode .reorder-btn {
+            background-color: rgba(78,205,196,0.2);
+            color: var(--accent-color);
+        }
+        
+        body.dark-mode .reorder-btn:hover {
+            background-color: rgba(78,205,196,0.3);
+        }
+        
+        /* Module search */
+        .module-search {
+            margin-bottom: 1rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        body.dark-mode .search-input {
+            background-color: #2d3436;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera modular -->
+    <header class="modular-header">
+        <div class="container">
+            <nav class="modular-nav">
+                <a href="#" class="modular-logo">BEAT<span>MAG</span></a>
+                <div class="modular-controls">
+                    <button class="modular-btn active" id="readModeBtn"><i class="fas fa-book-open"></i> Lectura</button>
+                    <button class="modular-btn" id="customizeBtn"><i class="fas fa-sliders-h"></i> Personalizar</button>
+                    <button class="modular-btn" id="shareBtn"><i class="fas fa-share-alt"></i> Compartir</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero section -->
+    <section class="modular-hero">
+        <div class="hero-container">
+            <h1 class="hero-title">LA REVOLUCIÓN DEL VINILO</h1>
+            <p class="hero-subtitle">Cómo el formato analógico está redefiniendo la industria musical en la era digital</p>
+            <div class="hero-meta">
+                <span class="hero-meta-item"><i class="far fa-user"></i> Por Nova IA</span>
+                <span class="hero-meta-item"><i class="far fa-calendar-alt"></i> 25 Noviembre 2023</span>
+                <span class="hero-meta-item"><i class="far fa-clock"></i> 8 min lectura</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contenido modular -->
+    <main class="modular-container">
+        <!-- Sidebar de control -->
+        <aside class="modular-sidebar">
+            <div class="modular-panel">
+                <h3 class="panel-title"><i class="fas fa-filter"></i> Filtrar módulos</h3>
+                <div class="module-search">
+                    <input type="text" class="search-input" placeholder="Buscar módulos..." id="moduleSearch">
+                </div>
+                <div class="module-tags">
+                    <div class="module-tag active" data-module-type="text">
+                        <i class="fas fa-align-left"></i> Texto
+                    </div>
+                    <div class="module-tag active" data-module-type="carousel">
+                        <i class="fas fa-images"></i> Galería
+                    </div>
+                    <div class="module-tag active" data-module-type="videos">
+                        <i class="fas fa-video"></i> Videos
+                    </div>
+                    <div class="module-tag active" data-module-type="audio">
+                        <i class="fas fa-music"></i> Audio
+                    </div>
+                    <div class="module-tag active" data-module-type="chart">
+                        <i class="fas fa-chart-bar"></i> Gráficos
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modular-panel">
+                <h3 class="panel-title"><i class="fas fa-sort"></i> Ordenar contenido</h3>
+                <div class="sort-options">
+                    <div class="sort-option active" data-sort="original">
+                        <span class="indicator"></span>
+                        <span>Orden original</span>
+                    </div>
+                    <div class="sort-option" data-sort="reverse">
+                        <span class="indicator"></span>
+                        <span>Orden inverso</span>
+                    </div>
+                </div>
+                <div class="reorder-controls">
+                    <button class="reorder-btn" id="moveUpBtn"><i class="fas fa-arrow-up"></i> Mover arriba</button>
+                    <button class="reorder-btn" id="moveDownBtn"><i class="fas fa-arrow-down"></i> Mover abajo</button>
+                </div>
+            </div>
+            
+            <div class="modular-panel">
+                <h3 class="panel-title"><i class="fas fa-palette"></i> Estilo</h3>
+                <div class="sort-options">
+                    <div class="sort-option active" data-theme="light">
+                        <span class="indicator"></span>
+                        <span>Modo claro</span>
+                    </div>
+                    <div class="sort-option" data-theme="dark">
+                        <span class="indicator"></span>
+                        <span>Modo oscuro</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Módulos de contenido -->
+        <div class="modular-content" id="modularContent">
+            <!-- Módulo de texto 1 -->
+            <article class="content-module text-module" id="text1" data-module-type="text" data-module-order="1">
+                <div class="module-header">
+                    <h2 class="module-title">El resurgir analógico</h2>
+                    <span class="module-type">Texto</span>
+                </div>
+                <div class="module-content">
+                    <p>En un mundo dominado por el streaming y la música digital, un formato vintage ha logrado lo impensable: <span class="highlight">resurgir con más fuerza que nunca</span>. El vinilo, que muchos daban por obsoleto a principios del siglo XXI, ha experimentado un crecimiento exponencial durante la última década.</p>
+                    
+                    <p>Según datos de la Recording Industry Association of America, las ventas de vinilos en 2022 superaron los 1.200 millones de dólares, una cifra que no se veía desde los años 80. Este fenómeno plantea una pregunta fascinante: ¿qué está impulsando este renacimiento analógico en plena era digital?</p>
+                </div>
+            </article>
+            
+            <!-- Módulo de carrusel -->
+            <article class="content-module carousel-module" id="carousel" data-module-type="carousel" data-module-order="2">
+                <div class="module-header">
+                    <h2 class="module-title">El vinilo en imágenes</h2>
+                    <span class="module-type">Galería</span>
+                </div>
+                <div class="module-content">
+                    <div id="vinylCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Colección de vinilos">
+                                <div class="carousel-caption">
+                                    <h3>EL ARTE DE COLECCIONAR</h3>
+                                    <p>Los millennials y la Generación Z están liderando el resurgimiento del vinilo.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Tocadiscos vintage">
+                                <div class="carousel-caption">
+                                    <h3>TECNOLOGÍA CON ALMA</h3>
+                                    <p>Los tocadiscos modernos combinan el encanto retro con la tecnología actual.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Persona escuchando vinilo">
+                                <div class="carousel-caption">
+                                    <h3>EXPERIENCIA SENSORIAL</h3>
+                                    <p>El ritual de escuchar vinilos ofrece una conexión única con la música.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Fábrica de vinilos">
+                                <div class="carousel-caption">
+                                    <h3>PRODUCCIÓN ARTESANAL</h3>
+                                    <p>El proceso de fabricación de vinilos sigue siendo un arte manual en muchos aspectos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#vinylCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#vinylCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Módulo de texto 2 -->
+            <article class="content-module text-module" id="text2" data-module-type="text" data-module-order="3">
+                <div class="module-header">
+                    <h2 class="module-title">La experiencia tangible</h2>
+                    <span class="module-type">Texto</span>
+                </div>
+                <div class="module-content">
+                    <p>Los expertos identifican múltiples factores detrás de este fenómeno. Por un lado, <span class="highlight">la experiencia sensorial completa</span> que ofrece el vinilo: desde el ritual de sacar cuidadosamente el disco de su funda, colocarlo en el plato y bajar la aguja, hasta la posibilidad de disfrutar de portadas de gran formato y libretos con letras e ilustraciones.</p>
+                    
+                    <p>"El vinilo transforma la escucha musical en un acto consciente y casi ceremonial", explica Marta Ríos, propietaria de Discos Paradiso, una de las tiendas especializadas más antiguas de Barcelona. "En la era del consumo rápido, las nuevas generaciones buscan experiencias más significativas y auténticas".</p>
+                </div>
+            </article>
+            
+            <!-- Módulo de vídeos -->
+            <article class="content-module video-grid-module" id="videos" data-module-type="videos" data-module-order="4">
+                <div class="module-header">
+                    <h2 class="module-title">El vinilo en movimiento</h2>
+                    <span class="module-type">Videos</span>
+                </div>
+                <div class="module-content">
+                    <div class="module-grid">
+                        <div class="video-item-container">
+                            <div class="video-item">
+                                <iframe src="https://www.youtube.com/embed/FlU0EqnPk64?rel=0" title="Proceso de fabricación de vinilos" allowfullscreen></iframe>
+                            </div>
+                            <p class="video-caption">Cómo se fabrica un disco de vinilo</p>
+                        </div>
+                        <div class="video-item-container">
+                            <div class="video-item">
+                                <iframe src="https://www.youtube.com/embed/tVsne32nweg?rel=0" title="Vinilos vs Digital" allowfullscreen></iframe>
+                            </div>
+                            <p class="video-caption">El debate sobre calidad de sonido</p>
+                        </div>
+                        <div class="video-item-container">
+                            <div class="video-item">
+                                <iframe src="https://www.youtube.com/embed/tDuRoPCWT-w?rel=0" title="Tienda de vinilos" allowfullscreen></iframe>
+                            </div>
+                            <p class="video-caption">El renacer de las tiendas de discos</p>
+                        </div>
+                        <div class="video-item-container">
+                            <div class="video-item">
+                                <iframe src="https://www.youtube.com/embed/hWWpYaL9jTk?rel=0" title="Música en vinilo" allowfullscreen></iframe>
+                            </div>
+                            <p class="video-caption">Por qué el vinilo suena diferente</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Módulo de texto 3 -->
+            <article class="content-module text-module" id="text3" data-module-type="text" data-module-order="5">
+                <div class="module-header">
+                    <h2 class="module-title">Los nuevos coleccionistas</h2>
+                    <span class="module-type">Texto</span>
+                </div>
+                <div class="module-content">
+                    <p>Sorprendentemente, <span class="highlight">los millennials y la Generación Z</span> son los principales impulsores de este resurgimiento. Según un estudio de la IFPI, el 50% de los compradores de vinilos tienen menos de 35 años.</p>
+                    
+                    <p>Para muchos jóvenes que crecieron con la música digital, el vinilo representa una forma de conexión física con el arte que las plataformas de streaming no pueden replicar. "Comprar un vinilo es como adquirir una pieza de arte", comenta David Torres, un estudiante de 22 años que comenzó su colección hace tres años.</p>
+                </div>
+            </article>
+            
+            <!-- Módulo de audio -->
+            <article class="content-module audio-module" id="audio" data-module-type="audio" data-module-order="6">
+                <div class="module-header">
+                    <h2 class="module-title">Comparativa de sonido</h2>
+                    <span class="module-type">Audio</span>
+                </div>
+                <div class="module-content">
+                    <h3 class="audio-title">VINILO VS. DIGITAL: ¿PUEDES NOTAR LA DIFERENCIA?</h3>
+                    <audio controls class="audio-player">
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+            </article>
+            
+            <!-- Módulo de texto 4 -->
+            <article class="content-module text-module" id="text4" data-module-type="text" data-module-order="7">
+                <div class="module-header">
+                    <h2 class="module-title">Innovaciones en vinilo</h2>
+                    <span class="module-type">Texto</span>
+                </div>
+                <div class="module-content">
+                    <p>La industria musical ha respondido a esta demanda con <span class="highlight">innovaciones sorprendentes</span>. Más allá de los lanzamientos estándar, las discográficas están produciendo ediciones especiales en vinilos de colores, con grabados láser, olores incorporados e incluso formatos novedosos.</p>
+                    
+                    <p>Artistas como Taylor Swift, Billie Eilish y Kendrick Lamar han encontrado en el vinilo una forma de ofrecer a sus fans productos coleccionables premium que trascienden la mera música. "El vinilo se ha convertido en un objeto de culto", afirma Carlos Vega, director de marketing de una importante discográfica.</p>
+                </div>
+            </article>
+            
+            <!-- Módulo de gráfico -->
+            <article class="content-module chart-module" id="chart" data-module-type="chart" data-module-order="8">
+                <div class="module-header">
+                    <h2 class="module-title">El boom en cifras</h2>
+                    <span class="module-type">Gráfico</span>
+                </div>
+                <div class="module-content">
+                    <canvas id="vinylSalesChart"></canvas>
+                    <div class="chart-options">
+                        <button class="chart-option active" onclick="updateChart('units')">Unidades vendidas</button>
+                        <button class="chart-option" onclick="updateChart('revenue')">Ingresos generados</button>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Módulo de texto 5 -->
+            <article class="content-module text-module" id="text5" data-module-type="text" data-module-order="9">
+                <div class="module-header">
+                    <h2 class="module-title">El futuro del vinilo</h2>
+                    <span class="module-type">Texto</span>
+                </div>
+                <div class="module-content">
+                    <p>Sin embargo, este renacimiento no está exento de desafíos. La <span class="highlight">escasez global de plantas de prensado</span> y los tiempos de espera (que pueden superar los 12 meses para artistas independientes) amenazan con frenar el crecimiento del sector.</p>
+                    
+                    <p>A pesar de estos obstáculos, los amantes del vinilo parecen dispuestos a esperar. Como resume Laura Jiménez, coleccionista desde los años 70: "El vinilo no es solo un formato, es una declaración de principios, un acto de amor por la música en su expresión más pura. Y el amor verdadero, como el buen sonido analógico, siempre merece la espera".</p>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="modular-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">Explorar</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Artículos</a>
+                        <a href="#" class="footer-link">Reportajes</a>
+                        <a href="#" class="footer-link">Entrevistas</a>
+                        <a href="#" class="footer-link">Críticas</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Temáticas</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Música</a>
+                        <a href="#" class="footer-link">Cultura</a>
+                        <a href="#" class="footer-link">Tecnología</a>
+                        <a href="#" class="footer-link">Tendencias</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Sobre nosotros</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Equipo</a>
+                        <a href="#" class="footer-link">Contacto</a>
+                        <a href="#" class="footer-link">Colaboraciones</a>
+                        <a href="#" class="footer-link">Publicidad</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="small">© 2023 BeatMag. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script>
+        // Inicializar gráfico
+        const ctx = document.getElementById('vinylSalesChart').getContext('2d');
+        let vinylChart;
+        
+        function initChart() {
+            const years = ['2010', '2012', '2014', '2016', '2018', '2020', '2022'];
+            const unitsData = [2.8, 4.6, 9.2, 13.1, 16.8, 27.5, 41.3];
+            const revenueData = [86, 171, 315, 430, 536, 843, 1200];
+            
+            vinylChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Millones de unidades',
+                        data: unitsData,
+                        backgroundColor: '#ff6b6b',
+                        borderColor: '#ff6b6b',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Millones de unidades vendidas',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateChart(type) {
+            const unitsData = [2.8, 4.6, 9.2, 13.1, 16.8, 27.5, 41.3];
+            const revenueData = [86, 171, 315, 430, 536, 843, 1200];
+            
+            // Actualizar botones
+            document.querySelectorAll('.chart-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (type === 'units') {
+                vinylChart.data.datasets[0].label = 'Millones de unidades';
+                vinylChart.data.datasets[0].data = unitsData;
+                vinylChart.options.scales.y.title.text = 'Millones de unidades vendidas';
+                vinylChart.data.datasets[0].backgroundColor = '#ff6b6b';
+                vinylChart.data.datasets[0].borderColor = '#ff6b6b';
+            } else {
+                vinylChart.data.datasets[0].label = 'Millones de dólares';
+                vinylChart.data.datasets[0].data = revenueData;
+                vinylChart.options.scales.y.title.text = 'Millones de dólares en ventas';
+                vinylChart.data.datasets[0].backgroundColor = '#4ecdc4';
+                vinylChart.data.datasets[0].borderColor = '#4ecdc4';
+            }
+            
+            vinylChart.update();
+        }
+        
+        // Variables globales
+        let selectedModule = null;
+        
+        // Control de módulos
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            
+            // Seleccionar módulo al hacer clic
+            document.querySelectorAll('.content-module').forEach(module => {
+                module.addEventListener('click', function() {
+                    document.querySelectorAll('.content-module').forEach(m => {
+                        m.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    selectedModule = this;
+                });
+            });
+            
+            // Mover módulo arriba
+            document.getElementById('moveUpBtn').addEventListener('click', function() {
+                if (selectedModule) {
+                    const prev = selectedModule.previousElementSibling;
+                    if (prev) {
+                        selectedModule.parentNode.insertBefore(selectedModule, prev);
+                        updateModuleOrders();
+                    }
+                } else {
+                    alert('Selecciona un módulo primero haciendo clic en su cabecera');
+                }
+            });
+            
+            // Mover módulo abajo
+            document.getElementById('moveDownBtn').addEventListener('click', function() {
+                if (selectedModule) {
+                    const next = selectedModule.nextElementSibling;
+                    if (next) {
+                        selectedModule.parentNode.insertBefore(next, selectedModule);
+                        updateModuleOrders();
+                    }
+                } else {
+                    alert('Selecciona un módulo primero haciendo clic en su cabecera');
+                }
+            });
+            
+            // Actualizar números de orden
+            function updateModuleOrders() {
+                const modules = Array.from(document.querySelectorAll('.content-module'));
+                modules.forEach((module, index) => {
+                    module.setAttribute('data-module-order', index + 1);
+                });
+            }
+            
+            // Mostrar/ocultar módulos por tipo
+            document.querySelectorAll('.module-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const moduleType = this.getAttribute('data-module-type');
+                    const modules = document.querySelectorAll(`[data-module-type="${moduleType}"]`);
+                    
+                    // Animación de fade out antes de ocultar
+                    if (this.classList.contains('active')) {
+                        modules.forEach(module => {
+                            module.classList.remove('hidden');
+                            setTimeout(() => {
+                                module.classList.remove('fade-out');
+                            }, 20);
+                        });
+                    } else {
+                        modules.forEach(module => {
+                            module.classList.add('fade-out');
+                            setTimeout(() => {
+                                module.classList.add('hidden');
+                            }, 300);
+                        });
+                    }
+                });
+            });
+            
+            // Buscar módulos
+            document.getElementById('moduleSearch').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const modules = document.querySelectorAll('.content-module');
+                
+                modules.forEach(module => {
+                    const title = module.querySelector('.module-title').textContent.toLowerCase();
+                    const content = module.querySelector('.module-content').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                        module.classList.remove('hidden');
+                        setTimeout(() => {
+                            module.classList.remove('fade-out');
+                        }, 20);
+                    } else {
+                        module.classList.add('fade-out');
+                        setTimeout(() => {
+                            module.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Ordenar módulos
+            document.querySelectorAll('.sort-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Marcar opción activa
+                    document.querySelectorAll('.sort-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    const sortType = this.getAttribute('data-sort');
+                    const container = document.getElementById('modularContent');
+                    const modules = Array.from(container.children);
+                    
+                    if (sortType === 'original') {
+                        modules.sort((a, b) => {
+                            return parseInt(a.getAttribute('data-module-order')) - parseInt(b.getAttribute('data-module-order'));
+                        });
+                    } else if (sortType === 'reverse') {
+                        modules.sort((a, b) => {
+                            return parseInt(b.getAttribute('data-module-order')) - parseInt(a.getAttribute('data-module-order'));
+                        });
+                    }
+                    
+                    // Reorganizar en el DOM con animación
+                    modules.forEach(module => {
+                        module.classList.add('fade-out');
+                        setTimeout(() => {
+                            container.appendChild(module);
+                            setTimeout(() => {
+                                module.classList.remove('fade-out');
+                            }, 20);
+                        }, 300);
+                    });
+                });
+            });
+            
+            // Cambiar tema
+            document.querySelectorAll('[data-theme]').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('[data-theme]').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    const theme = this.getAttribute('data-theme');
+                    document.body.className = theme;
+                });
+            });
+            
+            // Control de botones de navegación
+            document.getElementById('readModeBtn').addEventListener('click', function() {
+                document.querySelectorAll('.modular-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                // Lógica para modo lectura
+            });
+            
+            document.getElementById('customizeBtn').addEventListener('click', function() {
+                document.querySelectorAll('.modular-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                // Lógica para modo personalización
+            });
+            
+            document.getElementById('shareBtn').addEventListener('click', function() {
+                document.querySelectorAll('.modular-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                // Lógica para compartir
+                alert('Función de compartir activada. Aquí se implementaría la lógica para compartir el artículo.');
+            });
+        });
+    </script>
+</body>
+</html>
