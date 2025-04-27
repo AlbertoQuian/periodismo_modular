@@ -1025,6 +1025,10 @@
                 },
                 options: {
                     responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -1045,10 +1049,15 @@
                     plugins: {
                         legend: {
                             display: false
-                        }
-                    }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            mode: 'index',
+                            intersect: false
+                         }
+                     }
                 }
-            });
+             });
         }
         
         function updateChart(type) {
