@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -254,7 +255,19 @@
         body.dark-mode .module-tag {
             background-color: #2d3436;
             border-color: #444;
+            color: #f8f9fa;
         }
+        
+        body.dark-mode .module-tag.active {
+            background-color: var(--accent-color);
+            color: #1a1a2e; /* Color oscuro para contraste con el fondo verde-azul */
+            font-weight: 600;
+    }
+
+    body.dark-mode .module-tag:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.3);
+    }
         
         .module-tag i {
             font-size: 0.7rem;
@@ -533,7 +546,9 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: var(--accent-color);
+        }
+        body.dark-mode .footer-title {
+            color: #4ecdc4;
         }
         
         .footer-links {
@@ -547,6 +562,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
+        
         
         .footer-link:hover {
             color: var(--accent-color);
@@ -676,6 +692,26 @@
             background-color: #2d3436;
             border-color: #444;
             color: #f8f9fa;
+        }
+        
+        body.dark-mode .modular-footer {
+            background-color: #0a0a23; /* Fuerza color oscuro para el footer */
+        }
+
+        .footer-title {
+            color: var(--accent-color);
+        }
+
+        body.dark-mode .footer-title {
+            color: #ffffff !important; /* Blanco puro para máxima legibilidad */
+        }
+
+        body.dark-mode .footer-link {
+            color: rgba(255,255,255,0.9) !important; /* Texto más claro */
+        }
+
+        body.dark-mode .footer-link:hover {
+            color: #4ecdc4 !important; /* Mantiene el hover en verde-azul */
         }
     </style>
 </head>
@@ -1233,7 +1269,7 @@
                     this.classList.add('active');
                     
                     const theme = this.getAttribute('data-theme');
-                    document.body.className = theme;
+                     document.body.className = theme + '-mode';
                 });
             });
             
